@@ -1,6 +1,5 @@
 BaseView = require 'views/base_view'
 TimerCanvasView = require 'views/timer/timer_canvas_view'
-TimeController = require 'controllers/time_controller'
 
 module.exports = class TimerView extends BaseView
 
@@ -10,7 +9,7 @@ module.exports = class TimerView extends BaseView
 		super options
 		@timerCanvasView = new TimerCanvasView({
 			state: @state
-			controller: @controllers[TimeController.getNameSpace()]
+			controller: @controllers[require('controllers/timer_controller').getNameSpace()]
 			})
 
 	getName: () -> "TimerView"
@@ -18,5 +17,3 @@ module.exports = class TimerView extends BaseView
 	render: () ->
 		@renderSubView('div.timer_graphic_container', @timerCanvasView)
 		this
-
-

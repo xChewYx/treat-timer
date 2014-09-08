@@ -7,18 +7,15 @@ module.exports = class Router extends Backbone.Router
   routes:
     ''            : 'timer'
 
-  timer: () ->
+  timer: () -> 
+    TimerController = require ('controllers/timer_controller')
+    @timerController = new TimerController({state: @state})   
+    @state.get('controllers')[TimerController.getNameSpace()] = @timerController
 
-    TimerController = require ('controllers/time_controller')
-    timerController = new TimerController({state: @state})
-    @state.get('controllers')[TimerController.getNameSpace()] = timerController
+    @timerController.renderHtml()
+    @timerController.renderCanvas()
+
+
     
-    TimerView = require ('views/timer/timer_view')
-    timerView = new TimerView({
-      state: @state
-      controller: timerController
-    })
-
-    $("#root").append(timerView.render().html)
 
 

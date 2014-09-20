@@ -1,4 +1,5 @@
 BaseController = require 'controllers/base_controller'
+RotatorControl = require 'views/timer/rotator_control'
 
 module.exports = class TimerController extends BaseController
 
@@ -14,11 +15,6 @@ module.exports = class TimerController extends BaseController
 		@timerView.render()
 		$("#root").append(@timerView.render().html)
 
-	renderCanvas: () ->
-		canvas = $('.spinner')
-		canvas = canvas[0]
-		stage = new createjs.Stage(canvas)
-		stage.enableDOMEvents(true)
-		tweens = []
-		stage.enableMouseOver(10)
-		createjs.Touch.enable(stage)
+	renderSVG: () ->
+		rotator = new RotatorControl({})
+		rotator.paintTo(".timer_graphic_container")

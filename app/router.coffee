@@ -13,7 +13,7 @@ module.exports = class Router extends Backbone.Router
     @state.get('controllers')[TimerController.getNameSpace()] = @timerController
 
     @timerController.renderHtml()
-    @timerController.renderCanvas()
+    @timerController.renderSVG()
 
 
     
